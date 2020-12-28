@@ -1,0 +1,16 @@
+server:
+  port: 7070
+
+image:
+  path: C:\Users\pooya\Desktop\New folder\
+  url: http://localhost:7070/image/download/
+
+# DB
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/imageSave
+  jpa:
+    hibernate:
+      ddl-auto: update
