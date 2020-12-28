@@ -33,5 +33,8 @@ public class ImageController {
     byte[] downloaderImage(@PathVariable String imageName) throws Exception {
         return servic.downloaderImage(imageName);
     }
-
+    @GetMapping("/{id}")
+    ResponseEntity<Image> getImageById(@PathVariable int id){
+        return ResponseEntity.ok( servic.getImageById(id));
+    }
 }

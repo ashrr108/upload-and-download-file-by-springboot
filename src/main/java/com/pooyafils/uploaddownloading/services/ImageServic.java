@@ -53,4 +53,7 @@ public class ImageServic {
         InputStream in = new FileInputStream(path + imageName);
         return IOUtils.toByteArray(in);
     }
+    public Image getImageById(int id){
+        return repository.findById(id);
+    }
 }
