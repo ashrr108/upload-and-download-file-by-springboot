@@ -56,4 +56,6 @@ public class ImageServic {
     public Image getImageById(int id){
         return repository.findById(id);
     }
+
+
 }

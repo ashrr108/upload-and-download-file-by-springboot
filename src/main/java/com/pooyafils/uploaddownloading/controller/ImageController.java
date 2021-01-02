@@ -2,12 +2,17 @@ package com.pooyafils.uploaddownloading.controller;
 
 import com.pooyafils.uploaddownloading.domain.Image;
 import com.pooyafils.uploaddownloading.services.ImageServic;
+import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -36,5 +41,16 @@ public class ImageController {
     @GetMapping("/{id}")
     ResponseEntity<Image> getImageById(@PathVariable int id){
         return ResponseEntity.ok( servic.getImageById(id));
+    }
+    @PostMapping("/description")
+    public ResponseEntity<List<Image>>   uploadMultipleFiles(  @RequestParam("description") String description,
+    @RequestParam("file") MultipartFile[] files){
+        List<MultipartFile> listfiles=Arrays.asList(files);
+        for(int i=0;i<listfiles.size();i++){
+            servic.saveImage(listfiles.get(i),description);
+        }
+        return ResponseEntity.ok(servic.findAllImageUrl());
+
+
     }
 }
