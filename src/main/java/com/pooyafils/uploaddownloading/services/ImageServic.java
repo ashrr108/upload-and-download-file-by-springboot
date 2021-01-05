@@ -58,4 +58,8 @@ public class ImageServic {
     }
 
 
+    public void delete(int id) {
+        Image deleteImage=repository.findById(id);
+        repository.delete(deleteImage);
+    }
 }

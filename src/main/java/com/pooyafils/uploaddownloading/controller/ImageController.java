@@ -4,6 +4,7 @@ import com.pooyafils.uploaddownloading.domain.Image;
 import com.pooyafils.uploaddownloading.services.ImageServic;
 import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,12 @@ public class ImageController {
         return ResponseEntity.ok(servic.findAllImageUrl());
 
 
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteById(@PathVariable int id){
+
+        servic.delete(id);
+        return ResponseEntity.ok("item has been deleted");
     }
 }
