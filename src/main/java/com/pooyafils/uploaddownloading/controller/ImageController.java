@@ -20,6 +20,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.rmi.Remote;
 import java.util.*;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("image")
@@ -36,6 +37,7 @@ public class ImageController {
 
     @GetMapping
     ResponseEntity<List<Image>> findAllImageUrl() {
+
         return ResponseEntity.ok(servic.findAllImageUrl());
     }
 

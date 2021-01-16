@@ -3,6 +3,8 @@ package com.pooyafils.uploaddownloading.services;
 import com.pooyafils.uploaddownloading.domain.Image;
 import com.pooyafils.uploaddownloading.repository.ImageRepository;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,8 +27,9 @@ public class ImageServic {
     private String url;
     @Autowired
     private ImageRepository repository;
-
+    Logger logger= LoggerFactory.getLogger(ImageServic.class);
     public Image saveImage(MultipartFile file, String description) {
+logger.info("============saving a picture================");
         try {
             byte[] bytes = file.getBytes();
             Path pathImage = Paths.get(path + file.getOriginalFilename());

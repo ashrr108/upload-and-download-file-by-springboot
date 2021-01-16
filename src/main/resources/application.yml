@@ -14,3 +14,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+logging:
+  file:
+    path: /
+    name: LoggingInfo.txt
