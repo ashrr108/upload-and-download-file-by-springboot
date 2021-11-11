@@ -12,9 +12,9 @@ import java.nio.file.FileStore;
 @Data
 @AllArgsConstructor
 @Builder
-public class Image {
+public class MyFile {
 
-    public Image(){
+    public MyFile(){
     }
 
     @Id

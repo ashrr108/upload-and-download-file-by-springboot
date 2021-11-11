@@ -1,7 +1,7 @@
 package com.pooyafils.uploaddownloading.services;
 
-import com.pooyafils.uploaddownloading.domain.Image;
-import com.pooyafils.uploaddownloading.repository.ImageRepository;
+import com.pooyafils.uploaddownloading.domain.MyFile;
+import com.pooyafils.uploaddownloading.repository.MyFileRepository;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,36 +19,40 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Service
-public class ImageServic {
+public class FileService {
 
     @Value("${image.path}")
     private String path;
     @Value("${image.url}")
     private String url;
     @Autowired
-    private ImageRepository repository;
-    Logger logger= LoggerFactory.getLogger(ImageServic.class);
-    public Image saveImage(MultipartFile file, String description) {
-logger.info("============saving a picture================");
+    private MyFileRepository repository;
+    Logger logger = LoggerFactory.getLogger(FileService.class);
+
+    public MyFile saveImage(MultipartFile file, String description) {
+        logger.info("============saving a picture================");
+
         try {
+
             byte[] bytes = file.getBytes();
+
             Path pathImage = Paths.get(path + file.getOriginalFilename());
             Files.write(pathImage, bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
         file.getOriginalFilename();
-        Image image = Image.builder()
+        MyFile myFile = MyFile.builder()
                 .name(file.getOriginalFilename())
                 .description(description)
                 .path(path)
                 .url(url + file.getOriginalFilename())
                 .build();
-        repository.save(image);
-        return image;
+        repository.save(myFile);
+        return myFile;
     }
 
-    public List<Image> findAllImageUrl() {
+    public List<MyFile> findAllImageUrl() {
         return repository.findAll();
     }
 
@@ -56,13 +60,14 @@ logger.info("============saving a picture================");
         InputStream in = new FileInputStream(path + imageName);
         return IOUtils.toByteArray(in);
     }
-    public Image getImageById(int id){
+
+    public MyFile getImageById(int id) {
         return repository.findById(id);
     }
 
 
     public void delete(int id) {
-        Image deleteImage=repository.findById(id);
-        repository.delete(deleteImage);
+        MyFile deleteMyFile = repository.findById(id);
+        repository.delete(deleteMyFile);
     }
 }
