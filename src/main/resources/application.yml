@@ -1,5 +1,5 @@
 server:
-  port: 7070
+  port: 7071
 
 image:
   path: C:\Users\pooya\Desktop\New folder\
@@ -9,7 +9,7 @@ image:
 spring:
   datasource:
     username: root
-    password:
+    password: admin
     url: jdbc:mysql://localhost:3306/imageSave
   jpa:
     hibernate:
